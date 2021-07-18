@@ -17,7 +17,21 @@ namespace Sibers.WebApi
             services.AddControllers();
             services.AddDataAccess();
             services.AddBllServices();
-            services.AddSwaggerDocument();
+            services.AddSwaggerDocument(config =>
+            {
+                config.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Projects and Employee API";
+                    document.Info.Description = "API реализованное для выполнение тестового задания на стажировку в Sibers";
+                    document.Info.Contact = new NSwag.OpenApiContact
+                    {
+                        Name = "Алексей Голиков",
+                        Email = "alexgolikov5@mail.ru",
+                        Url = "https://vk.com/alexgolikov00"
+                    };
+                };
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
