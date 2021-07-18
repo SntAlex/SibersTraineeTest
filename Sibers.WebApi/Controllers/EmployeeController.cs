@@ -57,6 +57,10 @@ namespace Sibers.WebApi.Controllers
         public ActionResult AddEmployee(
             [FromBody] EmployeeRequest employeeRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var employee = mapper.Map<EmployeeToSave>(employeeRequest);
             employeeService.AddEmployee(employee);
             return Ok();
@@ -73,6 +77,10 @@ namespace Sibers.WebApi.Controllers
             [FromHeader] int id,
             [FromBody] EmployeeRequest employeeRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var employee = mapper.Map<EmployeeToSave>(employeeRequest);
             employeeService.UpdateEmployee(id, employee);
             return Ok();

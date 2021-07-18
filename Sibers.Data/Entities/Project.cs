@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sibers.Data.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,17 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sibers.Data.Entities
 {
-    public partial class Project
+    public partial class Project : BaseEntity
     {
         public Project()
         {
             ProjectsEmployees = new HashSet<ProjectsEmployee>();
         }
 
-        [Key]
-        public int Id { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime CreationDate { get; set; }
         [Required]
         [StringLength(64)]
         public string ProjectName { get; set; }

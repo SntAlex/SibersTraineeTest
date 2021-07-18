@@ -1,17 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using Sibers.Data.Entities.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace Sibers.Data.Entities
 {
-    public partial class ProjectsEmployee
+    public partial class ProjectsEmployee : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime CreationDate { get; set; }
         public int ProjectId { get; set; }
         public int EmployeeId { get; set; }
 

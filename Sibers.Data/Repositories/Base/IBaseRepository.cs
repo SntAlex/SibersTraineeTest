@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Sibers.Data.Entities.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Sibers.Data.Repositories.Base
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         T GetById(int id);
 

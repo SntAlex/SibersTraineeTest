@@ -1,4 +1,6 @@
-﻿namespace Sibers.WebApi.Models.Response.Employee
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Sibers.WebApi.Models.Response.Employee
 {
     /// <summary>
     /// Модель работника для вывода в список

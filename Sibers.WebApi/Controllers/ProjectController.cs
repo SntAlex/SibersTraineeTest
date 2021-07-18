@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Sibers.Services.Interfaces;
 using Sibers.Services.Models.Project;
 using Sibers.WebApi.Controllers.Base;
-using Sibers.WebApi.Models.Enums;
 using Sibers.WebApi.Models.Request.Project;
 using Sibers.WebApi.Models.Response.Project;
 using System.Collections.Generic;
@@ -59,6 +58,10 @@ namespace Sibers.WebApi.Controllers
         public ActionResult AddProject(
             [FromBody] ProjectRequest projectRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var project = mapper.Map<ProjectToSave>(projectRequest);
             projectService.AddProject(project);
             return Ok();
@@ -75,6 +78,10 @@ namespace Sibers.WebApi.Controllers
             [FromHeader] int id,
             [FromBody] ProjectRequest projectRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var project = mapper.Map<ProjectToSave>(projectRequest);
             projectService.UpdateProject(id, project);
             return Ok();

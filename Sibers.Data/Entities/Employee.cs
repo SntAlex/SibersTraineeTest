@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Sibers.Data.Entities.Base;
 
 #nullable disable
 
 namespace Sibers.Data.Entities
 {
     [Index(nameof(Email), Name = "UQ__Employee__A9D1053482C57762", IsUnique = true)]
-    public partial class Employee
+    public partial class Employee : BaseEntity
     {
         public Employee()
         {
@@ -17,10 +18,6 @@ namespace Sibers.Data.Entities
             ProjectsEmployees = new HashSet<ProjectsEmployee>();
         }
 
-        [Key]
-        public int Id { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime CreationDate { get; set; }
         [Required]
         [StringLength(40)]
         public string Firstname { get; set; }

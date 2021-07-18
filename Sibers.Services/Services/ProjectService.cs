@@ -30,7 +30,7 @@ namespace Sibers.Services.Services
 
             if (project == null)
             {
-                throw new NotFoundException("Проект не найден!");
+                throw new NotFoundException("Project not found");
             }
                 
             var projectResult = mapper.Map<ProjectDetailed>(project);
@@ -99,7 +99,7 @@ namespace Sibers.Services.Services
             {
                 transaction.Rollback();
                 
-                throw new BadRequestException("Ошибка при добавлении проекта!");
+                throw new BadRequestException("Error while adding project");
             }
         }
 
@@ -122,7 +122,7 @@ namespace Sibers.Services.Services
             {
                 transaction.Rollback();
                 
-                throw new BadRequestException("Ошибка при удалении проекта!");
+                throw new BadRequestException("Error while deleting project");
             }
         }
 
@@ -132,6 +132,11 @@ namespace Sibers.Services.Services
             try
             {
                 var projectToUpdate = unitOfWork.ProjectRepository.GetById(id);
+
+                if (projectToUpdate == null)
+                {
+                    throw new NotFoundException("Project not found");
+                }
                 
                 mapper.Map(project, projectToUpdate);
                 
@@ -176,7 +181,7 @@ namespace Sibers.Services.Services
             catch (Exception)
             {
                 transaction.Rollback();
-                throw new BadRequestException("Ошибка при изменении проекта!");
+                throw new BadRequestException("Error, while changing project");
             }
         }
 

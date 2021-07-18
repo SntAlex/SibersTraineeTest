@@ -28,7 +28,7 @@ namespace Sibers.Services.Services
             
             if (employee == null)
             {
-                throw new NotFoundException("Работник с таким Id не найден");
+                throw new NotFoundException("Employee not found");
             }
 
             var employeeResult = mapper.Map<EmployeeDetailed>(employee);
@@ -73,7 +73,7 @@ namespace Sibers.Services.Services
             {
                 transaction.Rollback();
              
-                throw new BadRequestException("Ошибка при добавлении пользователя!");
+                throw new BadRequestException("Error while adding employee");
             }
         }
 
@@ -82,6 +82,7 @@ namespace Sibers.Services.Services
             using var transaction = unitOfWork.BeginTransaction();
             try
             {
+
                 unitOfWork.ProjectsEmployeeRepository.DeleteByEmployeeId(id);
              
                 unitOfWork.Save();
@@ -100,7 +101,7 @@ namespace Sibers.Services.Services
             {
                 transaction.Rollback();
                 
-                throw new BadRequestException("Ошибка при удалении работника!");
+                throw new BadRequestException("Error while deleting employee");
             }
         }
 
@@ -113,7 +114,7 @@ namespace Sibers.Services.Services
                 
                 if (employeeToUpdate == null)
                 {
-                    throw new NotFoundException("Работник не найден!");
+                    throw new NotFoundException("Employee not found");
                 }
 
                 mapper.Map(employee, employeeToUpdate);
@@ -128,7 +129,7 @@ namespace Sibers.Services.Services
             {
                 transaction.Rollback();
   
-                throw new BadRequestException("Ошибка при обновлении работника!");
+                throw new BadRequestException("Error while updating employee");
             }
         }
 

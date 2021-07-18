@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sibers.WebApi.Models.Response.Employee
 {
@@ -16,7 +17,7 @@ namespace Sibers.WebApi.Models.Response.Employee
         /// Фамилия
         /// </summary>
         public string Lastname { get; set; }
-        
+
         /// <summary>
         /// Email
         /// </summary>

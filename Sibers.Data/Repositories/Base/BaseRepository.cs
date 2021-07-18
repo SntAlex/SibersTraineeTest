@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sibers.Data.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Sibers.Data.Repositories.Base
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly ProjectContext dbContext;
 
