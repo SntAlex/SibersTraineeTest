@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sibers.Services.Interfaces;
 using Sibers.Services.Models.Project;
 using Sibers.WebApi.Controllers.Base;
+using Sibers.WebApi.Models.Enums;
 using Sibers.WebApi.Models.Request.Project;
 using Sibers.WebApi.Models.Response.Project;
 using System.Collections.Generic;
@@ -41,9 +42,10 @@ namespace Sibers.WebApi.Controllers
         /// </summary>
         /// <returns>Список проектов</returns>
         [HttpGet]
-        public ActionResult<ICollection<ProjectListItemResponse>> GetProjects()
+        public ActionResult<ICollection<ProjectListItemResponse>> GetProjects(
+            [FromQuery] int orderBy)
         {
-            var projects = projectService.GetProjects();
+            var projects = projectService.GetProjects(orderBy);
             var projectsResponse = mapper.Map<ICollection<ProjectListItemResponse>>(projects);
             return Ok(projectsResponse);
         }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Sibers.Data.Entities;
+using Sibers.Data;
 using Sibers.Data.Repositories;
 using Sibers.Data.Repositories.Interfaces;
 

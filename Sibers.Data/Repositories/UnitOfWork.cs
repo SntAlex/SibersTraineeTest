@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using Sibers.Data.Entities;
 using Sibers.Data.Repositories.Interfaces;
 using System;
 

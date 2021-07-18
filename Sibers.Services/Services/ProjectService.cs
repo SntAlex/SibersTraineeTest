@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Sibers.Data.Entities;
+using Sibers.Data.Enums;
 using Sibers.Data.Repositories.Interfaces;
+using Sibers.Services.Exceptions;
 using Sibers.Services.Interfaces;
 using Sibers.Services.Models.Employee;
 using Sibers.Services.Models.Project;
@@ -25,21 +27,43 @@ namespace Sibers.Services.Services
         public ProjectDetailed GetProjectById(int id)
         {
             var project = unitOfWork.ProjectRepository.GetById(id);
+
+            if (project == null)
+            {
+                throw new NotFoundException("Проект не найден!");
+            }
+                
             var projectResult = mapper.Map<ProjectDetailed>(project);
-            var leader = unitOfWork.EmployeeRepository.GetById(project.LeaderId == null ? default(int) : project.LeaderId.Value);
+
+            var leader = unitOfWork.EmployeeRepository
+                .GetById(project.LeaderId == null ? default(int) : project.LeaderId.Value);
+
             var leaderResult = mapper.Map<EmployeeListItem>(leader);
+            
             projectResult.Leader = leaderResult;
-            var employeesIds = unitOfWork.ProjectsEmployeeRepository.GetAll(x => x.ProjectId == id).Select(x=>x.EmployeeId).ToList();
-            var employees = unitOfWork.EmployeeRepository.GetAll(x => employeesIds.Contains(x.Id));
+            
+            var employeesIds = unitOfWork.ProjectsEmployeeRepository
+                .GetAll(x => x.ProjectId == id)
+                .Select(x=>x.EmployeeId)
+                .ToList();
+            
+            var employees = unitOfWork.EmployeeRepository
+                .GetAll(x => employeesIds.Contains(x.Id));
+            
             var employeesResult = mapper.Map<ICollection<EmployeeListItem>>(employees);
+            
             projectResult.Employees = employeesResult;
+            
             return projectResult;
         }
 
-        public ICollection<ProjectListItem> GetProjects()
+        public ICollection<ProjectListItem> GetProjects(int orderBy)
         {
-            var projects = unitOfWork.ProjectRepository.GetAll();
+            
+            var projects = unitOfWork.ProjectRepository.GetAll((ProjectSortingSettings)orderBy);
+            
             var projectsResult = mapper.Map<ICollection<ProjectListItem>>(projects);
+            
             return projectsResult;
         }
 
@@ -49,21 +73,33 @@ namespace Sibers.Services.Services
             try
             {
                 var employeesInProjectIds = project.Employees;
-                var employees = unitOfWork.EmployeeRepository.GetAll(x => employeesInProjectIds.Contains(x.Id));
+            
+                var employees = unitOfWork.EmployeeRepository
+                    .GetAll(x => employeesInProjectIds.Contains(x.Id));
 
                 var projectToAdd = mapper.Map<Project>(project);
+   
                 var leader = unitOfWork.EmployeeRepository.GetById(project.Leader);
+                
                 projectToAdd.Leader = leader;
+                
                 unitOfWork.ProjectRepository.Add(projectToAdd);
+                
                 unitOfWork.Save();
+                
                 var projectEmployeeList = getLinkedProjectEmployeeList(projectToAdd, employees);
+                
                 unitOfWork.ProjectsEmployeeRepository.AddRange(projectEmployeeList);
+                
                 unitOfWork.Save();
+                
                 transaction.Commit();
             }
             catch (Exception)
             {
                 transaction.Rollback();
+                
+                throw new BadRequestException("Ошибка при добавлении проекта!");
             }
         }
 
@@ -73,14 +109,20 @@ namespace Sibers.Services.Services
             try
             {
                 unitOfWork.ProjectsEmployeeRepository.DeleteByProjectId(id);
+                
                 unitOfWork.Save();
+                
                 unitOfWork.ProjectRepository.Delete(id);
+                
                 unitOfWork.Save();
+                
                 transaction.Commit();
             }
             catch (Exception)
             {
                 transaction.Rollback();
+                
+                throw new BadRequestException("Ошибка при удалении проекта!");
             }
         }
 
@@ -90,24 +132,43 @@ namespace Sibers.Services.Services
             try
             {
                 var projectToUpdate = unitOfWork.ProjectRepository.GetById(id);
+                
                 mapper.Map(project, projectToUpdate);
+                
                 var leader = unitOfWork.EmployeeRepository.GetById(project.Leader);
+                
                 projectToUpdate.Leader = leader;
+                
                 unitOfWork.ProjectRepository.Update(projectToUpdate);
+                
                 unitOfWork.Save();
                 
-                var projectEmployees = unitOfWork.ProjectsEmployeeRepository.GetAll(x => x.ProjectId == id);
+                var projectEmployees = unitOfWork.ProjectsEmployeeRepository
+                    .GetAll(x => x.ProjectId == id);
+                
                 var employeesInProjectIds = project.Employees;
                
-                var projectEmployeesToAddIds = employeesInProjectIds.Except(projectEmployees.Select(x => x.EmployeeId));
-                var employeesToAdd = unitOfWork.EmployeeRepository.GetAll(e => projectEmployeesToAddIds.Contains(e.Id));
+                var projectEmployeesToAddIds = employeesInProjectIds
+                    .Except(projectEmployees.Select(x => x.EmployeeId));
+                
+                var employeesToAdd = unitOfWork.EmployeeRepository
+                    .GetAll(e => projectEmployeesToAddIds.Contains(e.Id));
+                
                 var projectEmployeeList = getLinkedProjectEmployeeList(projectToUpdate, employeesToAdd);
+                
                 unitOfWork.ProjectsEmployeeRepository.AddRange(projectEmployeeList);
+                
                 unitOfWork.Save();
                 
-                var employeesToDeleteFromProjectIds = projectEmployees.Select(x => x.EmployeeId).Except(employeesInProjectIds);
-                var projectEmployeesToDelete = unitOfWork.ProjectsEmployeeRepository.GetAll(pe => pe.ProjectId == id && employeesToDeleteFromProjectIds.Contains(pe.EmployeeId));
+                var employeesToDeleteFromProjectIds = projectEmployees
+                    .Select(x => x.EmployeeId)
+                    .Except(employeesInProjectIds);
+                
+                var projectEmployeesToDelete = unitOfWork.ProjectsEmployeeRepository
+                    .GetAll(pe => pe.ProjectId == id && employeesToDeleteFromProjectIds.Contains(pe.EmployeeId));
+                
                 unitOfWork.ProjectsEmployeeRepository.DeleteRange(projectEmployeesToDelete);
+                
                 unitOfWork.Save();
 
                 transaction.Commit();
@@ -115,6 +176,7 @@ namespace Sibers.Services.Services
             catch (Exception)
             {
                 transaction.Rollback();
+                throw new BadRequestException("Ошибка при изменении проекта!");
             }
         }
 
@@ -132,6 +194,6 @@ namespace Sibers.Services.Services
             }
             return projectEmployeeList;
         }
-
+        
     }
 }

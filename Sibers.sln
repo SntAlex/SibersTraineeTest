@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{E7DF3D23-9E7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bll", "Bll", "{9E510E75-C78D-4AF8-9A13-CBD4890AE4DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sibers.Data", "Sibers.Data\Sibers.Data.csproj", "{1471D813-1954-4847-A6DD-A331BE925A76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sibers.Data", "Sibers.Data\Sibers.Data.csproj", "{1471D813-1954-4847-A6DD-A331BE925A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sibers.Services", "Sibers.Services\Sibers.Services.csproj", "{3A0D13B2-58E8-4A65-81C8-E35E62A2ABE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sibers.Services", "Sibers.Services\Sibers.Services.csproj", "{3A0D13B2-58E8-4A65-81C8-E35E62A2ABE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sibers.WebApi", "Sibers.WebApi\Sibers.WebApi.csproj", "{18CF5F8E-5C3A-4A8C-9DFC-1A75B390B05A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sibers.WebApi", "Sibers.WebApi\Sibers.WebApi.csproj", "{18CF5F8E-5C3A-4A8C-9DFC-1A75B390B05A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sibers.Configuration", "Sibers.Configuration\Sibers.Configuration.csproj", "{015A2B6A-1F00-4598-8763-310A7CB2C5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sibers.Configuration", "Sibers.Configuration\Sibers.Configuration.csproj", "{015A2B6A-1F00-4598-8763-310A7CB2C5E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

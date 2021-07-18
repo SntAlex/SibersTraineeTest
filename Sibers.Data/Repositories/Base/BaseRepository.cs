@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sibers.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

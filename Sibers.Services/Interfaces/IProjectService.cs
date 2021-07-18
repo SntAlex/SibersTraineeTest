@@ -7,7 +7,7 @@ namespace Sibers.Services.Interfaces
     {
         ProjectDetailed GetProjectById(int id);
 
-        ICollection<ProjectListItem> GetProjects();
+        ICollection<ProjectListItem> GetProjects(int orderBy);
 
         void AddProject(ProjectToSave project);
 

@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sibers.Data.Entities;
 
 #nullable disable
 
-namespace Sibers.Data.Entities
+namespace Sibers.Data
 {
     public partial class ProjectContext : DbContext
     {

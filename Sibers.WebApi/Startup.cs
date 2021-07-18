@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Sibers.Configuration;
 using Sibers.Services.Mappings;
 using Sibers.WebApi.Mappings;
+using Sibers.WebApi.Middlewares;
 
 namespace Sibers.WebApi
 {
@@ -25,6 +26,8 @@ namespace Sibers.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseOpenApi();
 
