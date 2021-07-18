@@ -1,5 +1,8 @@
 ﻿namespace Sibers.Data.Enums
 {
+    /// <summary>
+    /// Возможные способы сортировки проектов
+    /// </summary>
     public enum ProjectSortingSettings
     {
         ProjectName = 1,

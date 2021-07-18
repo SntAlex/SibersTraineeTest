@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 namespace Sibers.WebApi.Mappings
 {
+    /// <summary>
+    /// Профиль для автомаппера в слое Api
+    /// </summary>
     public class ApiMappingProfile : Profile
     {
         public ApiMappingProfile()

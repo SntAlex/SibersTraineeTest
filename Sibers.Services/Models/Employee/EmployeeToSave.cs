@@ -1,5 +1,8 @@
 ﻿namespace Sibers.Services.Models.Employee
 {
+    /// <summary>
+    /// Работник для добавления и удаления
+    /// </summary>
     public class EmployeeToSave
     {
         public string Firstname { get; set; }

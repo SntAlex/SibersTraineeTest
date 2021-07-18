@@ -9,6 +9,9 @@ using Sibers.Data.Entities.Base;
 
 namespace Sibers.Data.Entities
 {
+    /// <summary>
+    /// Таблица работника
+    /// </summary>
     [Index(nameof(Email), Name = "UQ__Employee__A9D1053482C57762", IsUnique = true)]
     public partial class Employee : BaseEntity
     {

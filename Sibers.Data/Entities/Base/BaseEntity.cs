@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sibers.Data.Entities.Base
 {
+    /// <summary>
+    /// Базовая сущность для работы с бд
+    /// </summary>
     public abstract class BaseEntity
     {
         [Key]

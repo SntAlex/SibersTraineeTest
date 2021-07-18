@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace Sibers.Data.Repositories.Interfaces
 {
+    /// <summary>
+    /// Интерфейс репозитория проектов
+    /// </summary>
     public interface IProjectRepository : IBaseRepository<Project>
     {
         void DeleteLinksWithLeader(int leaderId);

@@ -4,6 +4,9 @@ using System;
 
 namespace Sibers.Data.Repositories
 {
+    /// <summary>
+    /// Реализация паттерна UnitOfWork
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private bool disposed;

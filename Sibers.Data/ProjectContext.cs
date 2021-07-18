@@ -5,6 +5,9 @@ using Sibers.Data.Entities;
 
 namespace Sibers.Data
 {
+    /// <summary>
+    /// Констекст базы данных
+    /// </summary>
     public partial class ProjectContext : DbContext
     {
         public ProjectContext()

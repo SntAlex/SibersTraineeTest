@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sibers.WebApi.Middlewares
 {
+    /// <summary>
+    /// Middleware для отлавливания ошибок
+    /// </summary>
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate next;

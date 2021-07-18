@@ -13,6 +13,9 @@ using System.Linq;
 
 namespace Sibers.Services.Services
 {
+    /// <summary>
+    /// Реализация сервиса для проектов
+    /// </summary>
     public class ProjectService : BaseService, IProjectService
     {
         private readonly IUnitOfWork unitOfWork;

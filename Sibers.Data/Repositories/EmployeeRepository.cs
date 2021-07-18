@@ -5,6 +5,9 @@ using Sibers.Data.Repositories.Interfaces;
 
 namespace Sibers.Data.Repositories
 {
+    /// <summary>
+    /// Репозиторий работников
+    /// </summary>
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         #region constructor

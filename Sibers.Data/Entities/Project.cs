@@ -8,6 +8,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sibers.Data.Entities
 {
+    /// <summary>
+    /// Таблица для проекта
+    /// </summary>
     public partial class Project : BaseEntity
     {
         public Project()

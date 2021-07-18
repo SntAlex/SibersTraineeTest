@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace Sibers.Data.Repositories.Base
 {
+    /// <summary>
+    /// Интерфейс базового репозитория
+    /// </summary>
+    /// <typeparam name="T">Сущность таблицы из бд, наследуемой от BaseEntity</typeparam>
     public interface IBaseRepository<T> where T : BaseEntity
     {
         T GetById(int id);

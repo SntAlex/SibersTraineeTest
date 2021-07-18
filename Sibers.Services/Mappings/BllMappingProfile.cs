@@ -2,10 +2,12 @@
 using Sibers.Data.Entities;
 using Sibers.Services.Models.Employee;
 using Sibers.Services.Models.Project;
-using System.Collections.Generic;
 
 namespace Sibers.Services.Mappings
 {
+    /// <summary>
+    /// Профиль Automapper для слоя Bll
+    /// </summary>
     public class BllMappingProfile : Profile
     {
         public BllMappingProfile()

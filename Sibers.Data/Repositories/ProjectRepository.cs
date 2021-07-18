@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace Sibers.Data.Repositories
 {
+    /// <summary>
+    /// Репозиторий проектов
+    /// </summary>
     public class ProjectRepository : BaseRepository<Project>, IProjectRepository
     {
         #region constructor

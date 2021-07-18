@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Sibers.Services.Models.Project
 {
+    /// <summary>
+    /// Проект для сохранения и обновления
+    /// </summary>
     public class ProjectToSave
     {
         public string ProjectName { get; set; }

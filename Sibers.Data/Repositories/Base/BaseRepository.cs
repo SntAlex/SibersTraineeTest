@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace Sibers.Data.Repositories.Base
 {
+    /// <summary>
+    /// Базовый репозиторий
+    /// </summary>
+    /// <typeparam name="T">Сущность таблицы из бд, наследуемой от BaseEntity</typeparam>
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly ProjectContext dbContext;

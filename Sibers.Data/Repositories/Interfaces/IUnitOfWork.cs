@@ -3,6 +3,9 @@ using System;
 
 namespace Sibers.Data.Repositories.Interfaces
 {
+    /// <summary>
+    /// Интерфейс паттерна UnitOfWork
+    /// </summary>
     public interface IUnitOfWork : IDisposable
     {
         IProjectRepository ProjectRepository { get; }

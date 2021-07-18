@@ -1,11 +1,13 @@
 ﻿using Sibers.Data.Entities;
 using Sibers.Data.Repositories.Base;
 using Sibers.Data.Repositories.Interfaces;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Sibers.Data.Repositories
 {
+    /// <summary>
+    /// Репозиторий связи проектов и работников
+    /// </summary>
     public class ProjectsEmployeeRepository : BaseRepository<ProjectsEmployee>, IProjectsEmployeeRepository
     {
         #region constructor

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Sibers.Services.Models.Project
 {
+    /// <summary>
+    /// Проект
+    /// </summary>
     public class ProjectDetailed
     {
         public string ProjectName { get; set; }

@@ -2,6 +2,9 @@
 
 namespace Sibers.Services.Models.Employee
 {
+    /// <summary>
+    /// Работник
+    /// </summary>
     public class EmployeeDetailed
     {
         public string Firstname { get; set; }

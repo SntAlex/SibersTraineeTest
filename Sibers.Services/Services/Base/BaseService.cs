@@ -2,6 +2,9 @@
 
 namespace Sibers.Services.Services.Base
 {
+    /// <summary>
+    /// Базовый сервис
+    /// </summary>
     public abstract class BaseService
     {
         protected readonly IMapper mapper;

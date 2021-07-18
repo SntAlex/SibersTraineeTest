@@ -5,6 +5,9 @@ using Sibers.Data.Repositories.Interfaces;
 
 namespace Sibers.Configuration
 {
+    /// <summary>
+    /// Конфигурация слоя DAL для DI
+    /// </summary>
     public static class DalConfiguration
     {
         public static IServiceCollection AddDataAccess(this IServiceCollection serviceCollection)

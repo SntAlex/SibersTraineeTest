@@ -11,6 +11,9 @@ using System.Linq;
 
 namespace Sibers.Services.Services
 {
+    /// <summary>
+    /// Реализвция сервиса для работников
+    /// </summary>
     public class EmployeeService : BaseService, IEmployeeService
     {
         private readonly IUnitOfWork unitOfWork;

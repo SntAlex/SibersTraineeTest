@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sibers.Data.Entities
 {
+    /// <summary>
+    /// Таблица для связи m-t-m проектов с работниками
+    /// </summary>
     public partial class ProjectsEmployee : BaseEntity
     {
         public int ProjectId { get; set; }
