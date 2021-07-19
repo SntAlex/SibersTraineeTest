@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Sibers.Data.Entities;
-using Sibers.Data.Enums;
 using Sibers.Data.Repositories.Interfaces;
+using Sibers.Services.Enums;
 using Sibers.Services.Exceptions;
 using Sibers.Services.Interfaces;
 using Sibers.Services.Models.Employee;
@@ -60,10 +60,11 @@ namespace Sibers.Services.Services
             return projectResult;
         }
 
-        public ICollection<ProjectListItem> GetProjects(int orderBy)
+        public ICollection<ProjectListItem> GetProjects(ProjectSortingSettings projectSortingSettings)
         {
+            var selectedSorting = mapper.Map<ProjectSortingSettings, Sibers.Data.Enums.ProjectSortingSettings>(projectSortingSettings);
             
-            var projects = unitOfWork.ProjectRepository.GetAll((ProjectSortingSettings)orderBy);
+            var projects = unitOfWork.ProjectRepository.GetAll(selectedSorting);
             
             var projectsResult = mapper.Map<ICollection<ProjectListItem>>(projects);
             

@@ -6,6 +6,7 @@ using Sibers.Configuration;
 using Sibers.Services.Mappings;
 using Sibers.WebApi.Mappings;
 using Sibers.WebApi.Middlewares;
+using System.Text.Json.Serialization;
 
 namespace Sibers.WebApi
 {
@@ -14,7 +15,10 @@ namespace Sibers.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(ApiMappingProfile), typeof(BllMappingProfile));
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            }); ;
             services.AddDataAccess();
             services.AddBllServices();
             services.AddSwaggerDocument(config =>

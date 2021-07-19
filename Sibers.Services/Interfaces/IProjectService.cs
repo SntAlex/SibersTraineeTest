@@ -1,4 +1,5 @@
-﻿using Sibers.Services.Models.Project;
+﻿using Sibers.Services.Enums;
+using Sibers.Services.Models.Project;
 using System.Collections.Generic;
 
 namespace Sibers.Services.Interfaces
@@ -10,7 +11,7 @@ namespace Sibers.Services.Interfaces
     {
         ProjectDetailed GetProjectById(int id);
 
-        ICollection<ProjectListItem> GetProjects(int orderBy);
+        ICollection<ProjectListItem> GetProjects(ProjectSortingSettings projectSortingSettings);
 
         void AddProject(ProjectToSave project);
 

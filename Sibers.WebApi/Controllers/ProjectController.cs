@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sibers.Services.Interfaces;
 using Sibers.Services.Models.Project;
 using Sibers.WebApi.Controllers.Base;
+using Sibers.WebApi.Enums;
 using Sibers.WebApi.Models.Request.Project;
 using Sibers.WebApi.Models.Response.Project;
 using System.Collections.Generic;
@@ -39,12 +40,14 @@ namespace Sibers.WebApi.Controllers
         /// <summary>
         /// Получить список проектов
         /// </summary>
-        /// <returns>Список проектов</returns>
+        /// <param name="orderBy">Режим сортировки</param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<ICollection<ProjectListItemResponse>> GetProjects(
-            [FromQuery] int orderBy)
+            [FromQuery] ProjectSortingSettings orderBy)
         {
-            var projects = projectService.GetProjects(orderBy);
+            var selectedSortingType = mapper.Map<ProjectSortingSettings, Sibers.Services.Enums.ProjectSortingSettings>(orderBy);
+            var projects = projectService.GetProjects(selectedSortingType);
             var projectsResponse = mapper.Map<ICollection<ProjectListItemResponse>>(projects);
             return Ok(projectsResponse);
         }
