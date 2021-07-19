@@ -76,6 +76,11 @@ namespace Sibers.Services.Services
             using var transaction = unitOfWork.BeginTransaction();
             try
             {
+                if (!project.Employees.Contains(project.Leader))
+                {
+                    throw new BadRequestException("Leader must be in employees");
+                }
+
                 var employeesInProjectIds = project.Employees;
             
                 var employees = unitOfWork.EmployeeRepository
@@ -84,6 +89,11 @@ namespace Sibers.Services.Services
                 var projectToAdd = mapper.Map<Project>(project);
    
                 var leader = unitOfWork.EmployeeRepository.GetById(project.Leader);
+
+                if (leader == null)
+                {
+                    throw new NotFoundException("Leader was not found");
+                }
                 
                 projectToAdd.Leader = leader;
                 
@@ -135,6 +145,11 @@ namespace Sibers.Services.Services
             using var transaction = unitOfWork.BeginTransaction();
             try
             {
+                if (!project.Employees.Contains(project.Leader))
+                {
+                    throw new BadRequestException("Leader must be in employees");
+                }
+
                 var projectToUpdate = unitOfWork.ProjectRepository.GetById(id);
 
                 if (projectToUpdate == null)
@@ -145,7 +160,12 @@ namespace Sibers.Services.Services
                 mapper.Map(project, projectToUpdate);
                 
                 var leader = unitOfWork.EmployeeRepository.GetById(project.Leader);
-                
+
+                if (leader == null)
+                {
+                    throw new NotFoundException("Leader was not found");
+                }
+
                 projectToUpdate.Leader = leader;
                 
                 unitOfWork.ProjectRepository.Update(projectToUpdate);

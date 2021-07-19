@@ -45,13 +45,13 @@ namespace Sibers.WebApi.Models.Request.Project
         /// <summary>
         /// Приоритет проекта
         /// </summary>
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue - 1)]
         public int ProjectPriority { get; set; }
 
         /// <summary>
         /// Id лидера проекта
         /// </summary>
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue - 1)]
         public int Leader { get; set; }
 
         /// <summary>
